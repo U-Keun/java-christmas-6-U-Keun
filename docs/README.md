@@ -5,8 +5,14 @@
     - 음식 메뉴와 수량을 가지는 맵 가진다.
   - `Discount` 클래스
     - `DiscountEvent` 리스트를 가진다.
-  - `FoodMenu` 열거형 클래스
+  - `Food` 인터페이스
+    - `Appetizer`, `MainDish`, `Dessert`, `Beverage` 열거형 클래스
     - 주문할 수 있는 음식 메뉴와 가격을 가진다.
+      - [ ] 문자열이 주어졌을 때, 문자열에 대응되는 음식 메뉴 객체를 반환하는 정적 메서드
+        - 대응되는 음식 메뉴가 없다면 `IllegalArgumentException`을 던진다.
+      - [ ] 음식 메뉴 객체의 이름을 반환하는 메서드
+      - [ ] 음식 메뉴 객체의 가격을 반환하는 메서드
+      - [ ] 음식이 음료인지 여부를 확인하는 메서드
 - View
 - Controller
 
