@@ -14,13 +14,6 @@ public enum Dessert implements Food<Dessert> {
         this.price = price;
     }
 
-    public Dessert fromName(String name) {
-        return Arrays.stream(Dessert.values())
-                .filter(appetizer -> appetizer.getName().equals(name))
-                .findFirst()
-                .orElse(null);
-    }
-
     public String getName() {
         return this.name;
     }

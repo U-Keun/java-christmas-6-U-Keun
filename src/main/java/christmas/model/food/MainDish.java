@@ -16,13 +16,6 @@ public enum MainDish implements Food<MainDish> {
         this.price = price;
     }
 
-    public MainDish fromName(String name) {
-        return Arrays.stream(MainDish.values())
-                .filter(appetizer -> appetizer.getName().equals(name))
-                .findFirst()
-                .orElse(null);
-    }
-
     public String getName() {
         return this.name;
     }

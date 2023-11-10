@@ -1,7 +1,14 @@
 package christmas.model.food;
 
+import java.util.Arrays;
+
 public interface Food<T> {
-    T fromName(String name);
+    static <T extends Enum<T> & Food<T>> T fromName(Class<T> enumClass, String name) {
+        return Arrays.stream(enumClass.getEnumConstants())
+                .filter(food -> food.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
 
     String getName();
 

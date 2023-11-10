@@ -15,13 +15,6 @@ public enum Appetizer implements Food<Appetizer> {
         this.price = price;
     }
 
-    public Appetizer fromName(String name) {
-        return Arrays.stream(Appetizer.values())
-                .filter(appetizer -> appetizer.getName().equals(name))
-                .findFirst()
-                .orElse(null);
-    }
-
     public String getName() {
         return this.name;
     }
