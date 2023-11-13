@@ -18,9 +18,9 @@
         - 할인을 받을 수 있는 기본 금액 이상의 주문이 들어왔는지 확인한다.
         - [x] `ChristmasDDayDiscount` 클래스 구현
         - [x] `WeekdayDiscount` 클래스 구현
-        - [ ] `HolidayDiscount` 클래스 구현
-        - [ ] `SpecialDiscount` 클래스 구현
-        - [ ] `ChampagneDiscount` 클래스 구성
+        - [x] `HolidayDiscount` 클래스 구현
+        - [x] `SpecialDiscount` 클래스 구현
+        - [x] `ChampagneDiscount` 클래스 구성
   - `Food` 인터페이스
     - `Appetizer`, `MainDish`, `Dessert`, `Beverage` 열거형 클래스
     - 주문할 수 있는 음식 메뉴와 가격을 가진다.
