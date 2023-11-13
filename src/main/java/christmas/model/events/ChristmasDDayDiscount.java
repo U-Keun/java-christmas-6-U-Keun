@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class ChristmasDDayDiscount extends DefaultDiscount {
-
     @Override
     protected Money calculateDiscountAmount(LocalDate date, Order order) {
         if (checkDiscountCondition(date, order)) {
