@@ -23,7 +23,7 @@ public class Money {
         return new Money(this.amount.subtract(amount.amount));
     }
 
-    public Money times(int quantity) {
+    public Money times(long quantity) {
         return new Money(this.amount.multiply(BigDecimal.valueOf(quantity)));
     }
 

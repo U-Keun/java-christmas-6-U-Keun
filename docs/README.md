@@ -17,7 +17,7 @@
       - `DefaultDiscount` 추상 클래스
         - 할인을 받을 수 있는 기본 금액 이상의 주문이 들어왔는지 확인한다.
         - [x] `ChristmasDDayDiscount` 클래스 구현
-        - [ ] `WeekdayDiscount` 클래스 구현
+        - [x] `WeekdayDiscount` 클래스 구현
         - [ ] `HolidayDiscount` 클래스 구현
         - [ ] `SpecialDiscount` 클래스 구현
         - [ ] `ChampagneDiscount` 클래스 구성

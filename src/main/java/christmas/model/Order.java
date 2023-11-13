@@ -17,9 +17,16 @@ public class Order {
         return new Order(input);
     }
 
-    public int getTotalOrderAmount() {
+    public Money getTotalOrderAmount() {
+        return order.entrySet().stream()
+                .map(entry -> entry.getKey().getPrice(entry.getValue()))
+                .reduce(Money.ZERO, Money::plus);
+    }
+
+    public Integer getCountMenuTypeOf(Class<? extends Food> menuType) {
         return order.keySet().stream()
-                .mapToInt(key -> key.getPrice(order.get(key)))
+                .filter(menuType::isInstance)
+                .mapToInt(order::get)
                 .sum();
     }
 
