@@ -7,9 +7,20 @@
       - 주문한 음식의 개수가 20개 이하인지 확인한다.
       - 주문은 음료로만 구성될 수 없다.
     - [x] 총 주문 금액을 반환하는 메서드
-  - `Discount` 인터페이스
-    - 할인 금액을 구하는 메서드와 할인 정보를 반환하는 메서드를 갖는다.
-    - `DiscountInformation` 추상 클래스
+  - `DiscountInformation` 클래스
+    - 적용되는 이벤트 리스트를 가진다.
+  - `DiscountEvent` 인터페이스
+    - `DecemberEvent` 열거형 클래스
+      - 12월 이벤트를 enum 객체로 가진다. 각 객체는 이벤트 이름과 할인되는 금액을 가진다.
+    - `DiscountHandler` 인터페이스
+      - 이 인터페이스를 구현하는 클래스는 할인 조건을 확인하는 메서드와 할인 금액을 계산하는 메서드를 구현해야 한다.
+      - `DefaultDiscount` 추상 클래스
+        - 할인을 받을 수 있는 기본 금액 이상의 주문이 들어왔는지 확인한다.
+        - [x] `ChristmasDDayDiscount` 클래스 구현
+        - [ ] `WeekdayDiscount` 클래스 구현
+        - [ ] `HolidayDiscount` 클래스 구현
+        - [ ] `SpecialDiscount` 클래스 구현
+        - [ ] `ChampagneDiscount` 클래스 구성
   - `Food` 인터페이스
     - `Appetizer`, `MainDish`, `Dessert`, `Beverage` 열거형 클래스
     - 주문할 수 있는 음식 메뉴와 가격을 가진다.
