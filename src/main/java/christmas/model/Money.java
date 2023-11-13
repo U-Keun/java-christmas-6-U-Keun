@@ -1,6 +1,7 @@
 package christmas.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Money {
     public static final Money ZERO = Money.valueOf(0);
@@ -29,5 +30,21 @@ public class Money {
 
     public boolean isGreaterThanOrEqual(Money other) {
         return amount.compareTo(other.amount) >= 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Money money)) {
+            return false;
+        }
+        return Objects.equals(amount, money.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount.stripTrailingZeros());
     }
 }
