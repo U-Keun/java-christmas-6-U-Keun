@@ -1,5 +1,6 @@
 package christmas.model.food;
 
+import christmas.model.Money;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public interface Food {
 
     String getName();
 
-    int getPrice(int quantity);
+    Money getPrice(int quantity);
 
     default boolean isNotBeverage() {
         return !(this instanceof Beverage);
