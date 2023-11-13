@@ -12,6 +12,7 @@
   - `DiscountEvent` 인터페이스
     - `DecemberEvent` 열거형 클래스
       - 12월 이벤트를 enum 객체로 가진다. 각 객체는 이벤트 이름과 할인되는 금액을 가진다.
+      - [ ] 날짜와 주문이 주어졌을 때 적용되는 이벤트 리스트를 반환하는 메서드
     - `DiscountHandler` 인터페이스
       - 이 인터페이스를 구현하는 클래스는 할인 조건을 확인하는 메서드와 할인 금액을 계산하는 메서드를 구현해야 한다.
       - `DefaultDiscount` 추상 클래스
@@ -20,7 +21,7 @@
         - [x] `WeekdayDiscount` 클래스 구현
         - [x] `HolidayDiscount` 클래스 구현
         - [x] `SpecialDiscount` 클래스 구현
-        - [x] `ChampagneDiscount` 클래스 구성
+        - [x] `ChampagneDiscount` 클래스 구현
   - `Food` 인터페이스
     - `Appetizer`, `MainDish`, `Dessert`, `Beverage` 열거형 클래스
     - 주문할 수 있는 음식 메뉴와 가격을 가진다.
