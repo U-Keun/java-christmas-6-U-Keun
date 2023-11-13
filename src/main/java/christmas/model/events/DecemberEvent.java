@@ -2,6 +2,11 @@ package christmas.model.events;
 
 import christmas.model.Money;
 import christmas.model.Order;
+import christmas.model.events.util.ChampagneDiscount;
+import christmas.model.events.util.ChristmasDDayDiscount;
+import christmas.model.events.util.HolidayDiscount;
+import christmas.model.events.util.SpecialDiscount;
+import christmas.model.events.util.WeekdayDiscount;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -15,17 +20,16 @@ public enum DecemberEvent implements DiscountEvent {
     SPECIAL_DISCOUNT_EVENT("특별 할인", new SpecialDiscount()::getDiscountAmount),
     CHAMPAGNE_EVENT("증정 이벤트", new ChampagneDiscount()::getDiscountAmount);
 
-    private static final DecemberEvent[] ENUMS = DecemberEvent.values();
     private final String eventName;
     private final BiFunction<LocalDate, Order, Money> discountedMoney;
+    private static final DecemberEvent[] ENUMS = DecemberEvent.values();
 
     DecemberEvent(String eventName, BiFunction<LocalDate, Order, Money> function) {
         this.eventName = eventName;
         this.discountedMoney = function;
     }
 
-    @Override
-    public List<DiscountEvent> getAppliedEvents(LocalDate date, Order order) {
+    public static List<DiscountEvent> getAppliedEvents(LocalDate date, Order order) {
         return Arrays.stream(ENUMS)
                 .filter(event -> !event.getDiscountAmount(date, order).equals(Money.ZERO))
                 .collect(Collectors.toList());
@@ -33,5 +37,13 @@ public enum DecemberEvent implements DiscountEvent {
 
     private Money getDiscountAmount(LocalDate date, Order order) {
         return discountedMoney.apply(date, order);
+    }
+
+    public String getEventName() {
+        return this.eventName;
+    }
+
+    public Money getDiscountedMoney() {
+        return (Money) this.discountedMoney;
     }
 }

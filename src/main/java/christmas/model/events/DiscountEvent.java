@@ -1,9 +1,9 @@
 package christmas.model.events;
 
-import christmas.model.Order;
-import java.time.LocalDate;
-import java.util.List;
+import christmas.model.Money;
 
 public interface DiscountEvent {
-    List<DiscountEvent> getAppliedEvents(LocalDate date, Order order);
+    String getEventName();
+
+    Money getDiscountedMoney();
 }
