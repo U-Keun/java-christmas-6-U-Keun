@@ -1,8 +1,6 @@
 package christmas.model.food;
 
-import java.util.Arrays;
-
-public enum Beverage implements Food<Beverage> {
+public enum Beverage implements Food {
     ZERO_COKE("제로콜라", 3_000),
     RED_WINE("레드와인", 60_000),
     CHAMPAGNE("샴페인", 25_000);
@@ -10,7 +8,7 @@ public enum Beverage implements Food<Beverage> {
     private final String name;
     private final int price;
 
-    Beverage(String name, int price) {
+    Beverage(final String name, final int price) {
         this.name = name;
         this.price = price;
     }
@@ -19,7 +17,7 @@ public enum Beverage implements Food<Beverage> {
         return this.name;
     }
 
-    public int getPrice() {
-        return this.price;
+    public int getPrice(final int quantity) {
+        return this.price * quantity;
     }
 }

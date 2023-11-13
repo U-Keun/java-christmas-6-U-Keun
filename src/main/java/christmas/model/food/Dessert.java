@@ -1,15 +1,13 @@
 package christmas.model.food;
 
-import java.util.Arrays;
-
-public enum Dessert implements Food<Dessert> {
+public enum Dessert implements Food {
     CHOCOLATE_CAKE("초코케이크", 15_000),
     ICE_CREAM("아이스크림", 5_000);
 
     private final String name;
     private final int price;
 
-    Dessert(String name, int price) {
+    Dessert(final String name, final int price) {
         this.name = name;
         this.price = price;
     }
@@ -18,7 +16,7 @@ public enum Dessert implements Food<Dessert> {
         return this.name;
     }
 
-    public int getPrice() {
-        return this.price;
+    public int getPrice(final int quantity) {
+        return this.price * quantity;
     }
 }
