@@ -17,6 +17,12 @@ public class Order {
         return new Order(input);
     }
 
+    public int getTotalOrderAmount() {
+        return order.keySet().stream()
+                .mapToInt(key -> key.getPrice(order.get(key)))
+                .sum();
+    }
+
     private Map<Food, Integer> convertInput(final Map<String, Integer> input) {
         return input.entrySet().stream()
                 .collect(Collectors.toMap(entry -> Food.fromName(entry.getKey()), Map.Entry::getValue));
