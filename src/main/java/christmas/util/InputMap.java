@@ -1,22 +1,28 @@
 package christmas.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class InputMap<A, B> implements InputValidator {
-    private final Map<A, B> map;
-    private String PAIR_SEPARATOR;
+    protected final Map<A, B> map;
+    protected String PAIR_SEPARATOR;
     private static final String DELIMITER = ",";
-    private static final String BLANK = " ";
-    private static final String NULL_STRING = "";
 
     protected InputMap(final String input) {
         setPairSeparator();
-        map = convertInput(parseString(input));
+        List<List<String>> parsedString = checkDuplicatedKey(parseString(input));
+        map = convertInput(parsedString);
         validateInstance();
+    }
+
+    @Override
+    public Map<A, B> getInputData() {
+        return map;
     }
 
     private List<List<String>> parseString(final String input) {
@@ -41,9 +47,19 @@ public abstract class InputMap<A, B> implements InputValidator {
         }
     }
 
+    private List<List<String>> checkDuplicatedKey(List<List<String>> parsedString) {
+        Set<String> set = new HashSet<>();
+        for (List<String> pair : parsedString) {
+            if (!set.add(pair.get(0))) {
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        }
+        return parsedString;
+    }
+
     protected abstract void setPairSeparator();
 
-    protected abstract Map<A, B> convertInput(List<List<String>> stringList);
+    protected abstract Map<A, B> convertInput(List<List<String>> pairList);
 
     public abstract void validateInstance();
 }

@@ -1,7 +1,7 @@
 package christmas.util;
 
 public abstract class InputNumber implements InputValidator {
-    private final Integer number;
+    protected final Integer number;
     private static final String BLANK = " ";
     private static final String NULL_STRING = "";
 
@@ -9,6 +9,11 @@ public abstract class InputNumber implements InputValidator {
         checkBlank(input);
         number = isInteger(input);
         validateInstance();
+    }
+
+    @Override
+    public Integer getInputData() {
+        return number;
     }
 
     private void checkBlank(String input) {

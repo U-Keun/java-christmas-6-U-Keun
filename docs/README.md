@@ -34,9 +34,9 @@
     - `BigDecimal` 타입의 멤버 변수를 가진다.
     - [x] 금액의 더하기, 빼기, 곱하기 메서드
     - [x] 특정 값 이상인지 확인하는 메서드
-  - [ ] `InputDayNumber` 클래스
+  - [x] `InputDayNumber` 클래스
     - `InputNumber` 클래스를 상속받는다.
-  - [ ] `InputMenuMap` 클래스
+  - [x] `InputMenuMap` 클래스
     - `InputMap` 클래스를 상속받는다.
 - View
   - `InputView` 클래스
