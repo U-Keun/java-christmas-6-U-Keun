@@ -3,8 +3,12 @@ package christmas.model.input;
 import christmas.util.InputNumber;
 
 public class InputDayNumber extends InputNumber {
-    protected InputDayNumber(String input) {
+    private InputDayNumber(String input) {
         super(input);
+    }
+
+    public static InputDayNumber getInstance(String input) {
+        return new InputDayNumber(input);
     }
 
     @Override

@@ -7,8 +7,12 @@ import java.util.stream.Collectors;
 
 public class InputMenuMap extends InputMap<String, Integer> {
     private static final String MENU_SEPARATOR = "-";
-    protected InputMenuMap(final String input) {
+    private InputMenuMap(final String input) {
         super(input);
+    }
+
+    public static InputMenuMap getInstance(String input) {
+        return new InputMenuMap(input);
     }
 
     @Override
