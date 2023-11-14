@@ -34,7 +34,22 @@
     - `BigDecimal` 타입의 멤버 변수를 가진다.
     - [x] 금액의 더하기, 빼기, 곱하기 메서드
     - [x] 특정 값 이상인지 확인하는 메서드
+  - [ ] `InputDayNumber` 클래스
+    - `InputNumber` 클래스를 상속받는다.
+  - [ ] `InputMenuMap` 클래스
+    - `InputMap` 클래스를 상속받는다.
 - View
+  - `InputView` 클래스
+  - `OutputView` 클래스
 - Controller
+  - `Controller` 인터페이스
+    - `start` 메서드를 구현해야 한다.
+    - `ReservationController` 클래스
+- util
+  - `InputValidator` 인터페이스
+    - [x] `InputNumber` 추상 클래스
+      - 객체의 유효성을 검사하는 메서드를 구현해야 한다.
+    - [x] `InputMap` 추상 클래스
+      - 구분자를 지정하는 메서드, 분해된 문자열을 Map으로 변환하는 메서드, 객체의 유효성을 검사하는 메서드를 구현해야 한다.
 
 ---
