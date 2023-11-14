@@ -32,6 +32,10 @@ public class Money {
         return amount.compareTo(other.amount) >= 0;
     }
 
+    public Integer toInt() {
+        return amount.intValue();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

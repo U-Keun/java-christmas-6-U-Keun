@@ -30,6 +30,11 @@ public class Order {
                 .sum();
     }
 
+    public Map<String, Integer> getOrderSpecification() {
+        return order.keySet().stream()
+                .collect(Collectors.toMap(Food::getName, order::get));
+    }
+
     private Map<Food, Integer> convertInput(final Map<String, Integer> input) {
         return input.entrySet().stream()
                 .collect(Collectors.toMap(entry -> Food.fromName(entry.getKey()), Map.Entry::getValue));
