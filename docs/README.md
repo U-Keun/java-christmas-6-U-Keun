@@ -1,7 +1,4 @@
 - Model
-  - `Reservation` 클래스
-    - 날짜, 주문 정보, 할인 정보(이벤트 리스트)를 가진다.
-    - [ ] 전달할 정보를 dto 객체로 반환하는 메서드
   - `Order` 클래스
     - 음식 메뉴와 수량을 가지는 맵을 가진다.
     - [x] 올바른 주문인지 확인하는 메서드
@@ -38,6 +35,9 @@
     - `InputNumber` 클래스를 상속받는다.
   - [x] `InputMenuMap` 클래스
     - `InputMap` 클래스를 상속받는다.
+  - `AppliedEvent` 클래스
+    - 적용된 `DiscountEvent`의 리스트를 가진다.
+    - [x] 할인 정보, 증정 이벤트 활성화 여부, 총 혜택 금액을 반환하는 기능
 - View
   - `InputView` 클래스
     - [x] 입력을 요청하는 메시지를 출력하는 기능
@@ -50,6 +50,10 @@
   - `InputService` 클래스
     - [x] 입력할 때 사용자에게 보여줄 출력문을 호출하는 기능
     - [x] 사용자에게 입력을 요쳥하는 기능
+  - `ReservationService` 클래스
+    - 날짜, 주문 정보, 할인 정보(이벤트 리스트)를 가진다.
+    - [ ] 전달할 정보를 dto 객체로 반환하는 메서드
+  - `OutputService` 클래스
 - util
   - `InputValidator` 인터페이스
     - [x] `InputNumber` 추상 클래스
