@@ -31,19 +31,15 @@ public enum DecemberEvent implements DiscountEvent {
 
     public static List<DiscountEvent> getAppliedEvents(LocalDate date, Order order) {
         return Arrays.stream(ENUMS)
-                .filter(event -> !event.getDiscountAmount(date, order).equals(Money.ZERO))
+                .filter(event -> !event.getDiscountedMoney(date, order).equals(Money.ZERO))
                 .collect(Collectors.toList());
     }
 
-    private Money getDiscountAmount(LocalDate date, Order order) {
+    public Money getDiscountedMoney(LocalDate date, Order order) {
         return discountedMoney.apply(date, order);
     }
 
     public String getEventName() {
         return this.eventName;
-    }
-
-    public Money getDiscountedMoney() {
-        return (Money) this.discountedMoney;
     }
 }

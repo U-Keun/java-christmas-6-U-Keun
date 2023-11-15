@@ -1,8 +1,9 @@
 package christmas.model;
 
+import static christmas.model.events.DecemberEvent.CHAMPAGNE_EVENT;
+
 import christmas.model.events.DecemberEvent;
 import christmas.model.events.DiscountEvent;
-import christmas.model.events.util.ChampagneDiscount;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -19,21 +20,21 @@ public class AppliedEvent {
         return new AppliedEvent(date, order);
     }
 
-    public Map<String, Integer> getDiscountDetails() {
+    public Map<String, Integer> getDiscountDetails(LocalDate date, Order order) {
         return appliedEvent.stream()
                 .collect(Collectors.toMap(
-                        DiscountEvent::getEventName, event -> event.getDiscountedMoney().toInt()
+                        DiscountEvent::getEventName, event -> event.getDiscountedMoney(date, order).toInt()
                 ));
     }
 
     public boolean hasGiveawayMenu() {
         return appliedEvent.stream()
-                .anyMatch(event -> event instanceof ChampagneDiscount);
+                .anyMatch(event -> event == CHAMPAGNE_EVENT);
     }
 
-    public Integer getTotalBenefitAmount() {
-        return appliedEvent.stream()
-                .mapToInt(event -> event.getDiscountedMoney().toInt())
+    public Integer getTotalBenefitAmount(LocalDate date, Order order) {
+        return (-1) * appliedEvent.stream()
+                .mapToInt(event -> event.getDiscountedMoney(date, order).toInt())
                 .sum();
     }
 }
