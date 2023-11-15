@@ -33,17 +33,8 @@ public class OutputView {
         printMessage(TOTAL_ORDER_AMOUNT_TAG, TOTAL_ORDER_AMOUNT_FORMAT, totalOrderAmount);
     }
 
-    public void printGiveawayMenu(boolean hasGiveawayMenu) {
-        StringBuilder print = new StringBuilder();
-        print.append(GIVEAWAY_MENU_TAG.getMessage());
-        if (hasGiveawayMenu) {
-            print.append(GIVEAWAY_MENU_FORMAT.getMessage());
-            System.out.println(print);
-            return;
-        }
-
-        print.append(NONE.getMessage());
-        System.out.println(print);
+    public void printGiveawayMenu(String giveawayMenu) {
+        printMessage(GIVEAWAY_MENU_TAG, GIVEAWAY_MENU_FORMAT, giveawayMenu);
     }
 
     public void printBenefitSpecification(Map<String, Integer> discountDetails) {
@@ -65,26 +56,31 @@ public class OutputView {
     private void printMessage(ViewMessage tag, ViewMessage format, Object... args) {
         StringBuilder print = new StringBuilder();
         print.append(tag.getMessage());
-
-        if (args == null || (args.length == 1 && args[0] == null)) {
-            print.append(NONE.getMessage());
-        } else {
-            print.append(format.getMessage(args));
-        }
-
+        print.append(getMessageWithArgs(format, args));
         System.out.println(print);
+    }
+
+    private String getMessageWithArgs(ViewMessage format, Object... args) {
+        if (args == null || (args.length == 1 && args[0] == null)) {
+            return NONE.getMessage();
+        }
+        return format.getMessage(args);
     }
 
     private void printMessageWithMap(ViewMessage tag, ViewMessage format, Map<String, Integer> map) {
         StringBuilder print = new StringBuilder();
         print.append(tag.getMessage());
+        print.append(getMessageWithMap(format, map));
+        System.out.println(print);
+    }
 
+    private String getMessageWithMap(ViewMessage format, Map<String, Integer> map) {
         if (map == null || map.isEmpty()) {
-            print.append(NONE.getMessage());
-        } else {
-            map.forEach((key, value) -> print.append(format.getMessage(key, value)));
+            return NONE.getMessage();
         }
 
-        System.out.println(print);
+        StringBuilder mapMessage = new StringBuilder();
+        map.forEach((key, value) -> mapMessage.append(format.getMessage(key, value)));
+        return mapMessage.toString();
     }
 }

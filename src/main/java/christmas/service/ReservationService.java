@@ -44,13 +44,13 @@ public class ReservationService {
 
     private void setDataByAppliedEvent(ReservationDTO reservationDTO) {
         reservationDTO.setDiscountDetails(appliedEvent.getDiscountDetails(date, order));
-        reservationDTO.setHasGiveawayMenu(appliedEvent.hasGiveawayMenu());
+        reservationDTO.setGiveawayMenu(appliedEvent.getGiveawayMenu());
         reservationDTO.setTotalBenefitAmount(appliedEvent.getTotalBenefitAmount(date, order));
     }
 
     private Integer calculateTotalPaymentAmount(ReservationDTO reservationDTO) {
         Integer paymentAmount = reservationDTO.getTotalOrderAmount() + reservationDTO.getTotalBenefitAmount();
-        if (reservationDTO.hasGiveawayMenu()) {
+        if (reservationDTO.getGiveawayMenu() != null) {
             paymentAmount += 25000;
         }
         return paymentAmount;

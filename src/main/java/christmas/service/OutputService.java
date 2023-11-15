@@ -18,7 +18,7 @@ public class OutputService {
         outputView.printOverviewStartMessage(reservationDTO.getDate());
         outputView.printOrder(reservationDTO.getOrderedMenus());
         outputView.printOrderAmount(reservationDTO.getTotalOrderAmount());
-        outputView.printGiveawayMenu(reservationDTO.hasGiveawayMenu());
+        outputView.printGiveawayMenu(reservationDTO.getGiveawayMenu());
         outputView.printBenefitSpecification(reservationDTO.getDiscountDetails());
         outputView.printBenefitAmount(reservationDTO.getTotalBenefitAmount());
         outputView.printPaymentAmount(reservationDTO.getTotalPaymentAmount());

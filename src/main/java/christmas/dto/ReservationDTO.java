@@ -8,7 +8,7 @@ public class ReservationDTO {
     private Map<String, Integer> orderedMenus;
     private Integer totalOrderAmount;
     private Map<String, Integer> discountDetails;
-    private boolean hasGiveawayMenu;
+    private String giveawayMenu;
     private Integer totalBenefitAmount;
     private Integer totalPaymentAmount;
     private String eventBadge;
@@ -45,12 +45,12 @@ public class ReservationDTO {
         this.discountDetails = discountDetails;
     }
 
-    public boolean hasGiveawayMenu() {
-        return hasGiveawayMenu;
+    public String getGiveawayMenu() {
+        return giveawayMenu;
     }
 
-    public void setHasGiveawayMenu(boolean hasGiveawayMenu) {
-        this.hasGiveawayMenu = hasGiveawayMenu;
+    public void setGiveawayMenu(String giveawayMenu) {
+        this.giveawayMenu = giveawayMenu;
     }
 
     public Integer getTotalBenefitAmount() {
