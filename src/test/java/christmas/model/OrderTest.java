@@ -1,5 +1,7 @@
 package christmas.model;
 
+import static christmas.model.TestInstance.ORDER_TEST_INSTANCE;
+import static christmas.model.TestInstance.TEST_INPUT;
 import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.model.food.Appetizer;
@@ -13,17 +15,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OrderTest {
-    private final Map<String, Integer> testInput = Map.of(
-            "양송이수프", 1,
-            "제로콜라", 1,
-            "티본스테이크",1,
-            "초코케이크",1);
-    private final Order testOrder = Order.getInstance(testInput);
-
     @DisplayName("총 주문 금액 계산 작동 확인 테스트")
     @Test
     void getTotalOrderAmount() {
-        Money totalAmount = testOrder.getTotalOrderAmount();
+        Money totalAmount = ORDER_TEST_INSTANCE.getTotalOrderAmount();
 
         Money expected = Money.valueOf(79000);
 
@@ -40,7 +35,7 @@ class OrderTest {
         expectedCounts.put(Dessert.class, 1);
 
         for (Map.Entry<Class<?>, Integer> entry : expectedCounts.entrySet()) {
-            Integer actualCount = testOrder.getCountMenuTypeOf((Class<? extends Food>) entry.getKey());
+            Integer actualCount = ORDER_TEST_INSTANCE.getCountMenuTypeOf((Class<? extends Food>) entry.getKey());
             assertEquals(entry.getValue(), actualCount);
         }
     }
@@ -48,9 +43,9 @@ class OrderTest {
     @DisplayName("주문 내역 확인 테스트")
     @Test
     void getOrderSpecificationTest() {
-        Map<String, Integer> orderSpecification = testOrder.getOrderSpecification();
+        Map<String, Integer> orderSpecification = ORDER_TEST_INSTANCE.getOrderSpecification();
 
-        for (String menu : testInput.keySet()) {
+        for (String menu : TEST_INPUT.keySet()) {
             assertEquals(1, orderSpecification.get(menu));
         }
     }
