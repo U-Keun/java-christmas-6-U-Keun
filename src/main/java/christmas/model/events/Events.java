@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-public enum DecemberEvent implements DiscountEvent {
+public enum Events implements DiscountEvent {
     CHRISTMAS_D_DAY_EVENT("크리스마스 디데이 할인", new ChristmasDDayDiscount()::getDiscountAmount),
     WEEKDAY_EVENT("평일 할인", new WeekdayDiscount()::getDiscountAmount),
     HOLIDAY_EVENT("주말 할인", new HolidayDiscount()::getDiscountAmount),
@@ -22,17 +22,21 @@ public enum DecemberEvent implements DiscountEvent {
 
     private final String eventName;
     private final BiFunction<LocalDate, Order, Money> discountedMoney;
-    private static final DecemberEvent[] ENUMS = DecemberEvent.values();
+    private static final Events[] ENUMS = Events.values();
 
-    DecemberEvent(String eventName, BiFunction<LocalDate, Order, Money> function) {
+    Events(String eventName, BiFunction<LocalDate, Order, Money> function) {
         this.eventName = eventName;
         this.discountedMoney = function;
     }
 
     public static List<DiscountEvent> getAppliedEvents(LocalDate date, Order order) {
         return Arrays.stream(ENUMS)
-                .filter(event -> !event.getDiscountedMoney(date, order).equals(Money.ZERO))
+                .filter(event -> isApplied(event, date, order))
                 .collect(Collectors.toList());
+    }
+
+    private static boolean isApplied(Events event, LocalDate date, Order order) {
+        return !event.getDiscountedMoney(date, order).equals(Money.ZERO);
     }
 
     public Money getDiscountedMoney(LocalDate date, Order order) {

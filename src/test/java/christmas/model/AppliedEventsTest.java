@@ -12,7 +12,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class AppliedEventTest {
+class AppliedEventsTest {
 
     @DisplayName("크리스마스 이전 평일 할인 내역 확인 테스트")
     @Test

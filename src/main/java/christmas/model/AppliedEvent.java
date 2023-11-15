@@ -1,8 +1,8 @@
 package christmas.model;
 
-import static christmas.model.events.DecemberEvent.CHAMPAGNE_EVENT;
+import static christmas.model.events.Events.CHAMPAGNE_EVENT;
 
-import christmas.model.events.DecemberEvent;
+import christmas.model.events.Events;
 import christmas.model.events.DiscountEvent;
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +14,7 @@ public class AppliedEvent {
     private static final String GIVEAWAY_MENU = "샴페인 1개";
 
     private AppliedEvent(LocalDate date, Order order) {
-        appliedEvent = DecemberEvent.getAppliedEvents(date, order);
+        appliedEvent = Events.getAppliedEvents(date, order);
     }
 
     public static AppliedEvent getInstance(LocalDate date, Order order) {
