@@ -1,5 +1,8 @@
 package christmas.util;
 
+import christmas.util.exception.ErrorMessage;
+import christmas.util.exception.EventException;
+
 public abstract class InputNumber implements InputValidator {
     protected final Integer number;
     private static final String BLANK = " ";
@@ -19,7 +22,7 @@ public abstract class InputNumber implements InputValidator {
     private void checkBlank(String input) {
         input = input.replaceAll(BLANK, NULL_STRING);
         if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw EventException.of(ErrorMessage.INVALID_DAY_NUMBER);
         }
     }
 
@@ -27,7 +30,7 @@ public abstract class InputNumber implements InputValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw EventException.of(ErrorMessage.INVALID_DAY_NUMBER);
         }
     }
 

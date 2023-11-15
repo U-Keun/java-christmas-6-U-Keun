@@ -1,6 +1,8 @@
 package christmas.model.input;
 
 import christmas.util.InputMap;
+import christmas.util.exception.ErrorMessage;
+import christmas.util.exception.EventException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,14 +37,14 @@ public class InputMenuMap extends InputMap<String, Integer> {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw EventException.of(ErrorMessage.INVALID_ORDER);
         }
     }
 
     private void checkMenuCount() {
         for (Integer menuCount : map.values()) {
             if (menuCount < 1 || menuCount > 20) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                throw EventException.of(ErrorMessage.INVALID_ORDER);
             }
         }
     }

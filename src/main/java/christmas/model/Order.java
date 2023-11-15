@@ -1,6 +1,8 @@
 package christmas.model;
 
 import christmas.model.food.Food;
+import christmas.util.exception.ErrorMessage;
+import christmas.util.exception.EventException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -47,7 +49,7 @@ public class Order {
 
     private void checkValidQuantity() {
         if (countTotalQuantity() > MAXIMUM_QUANTITY) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw EventException.of(ErrorMessage.INVALID_ORDER);
         }
     }
 
@@ -59,7 +61,7 @@ public class Order {
 
     private void checkValidOrder() {
         if (hasOnlyBeverages()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw EventException.of(ErrorMessage.INVALID_ORDER);
         }
     }
 

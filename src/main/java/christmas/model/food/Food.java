@@ -1,6 +1,8 @@
 package christmas.model.food;
 
 import christmas.model.Money;
+import christmas.util.exception.ErrorMessage;
+import christmas.util.exception.EventException;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -10,7 +12,7 @@ public interface Food {
                 .map(menuType -> findMenu(menuType, name))
                 .filter(Objects::nonNull)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해 주세요."));
+                .orElseThrow(() -> EventException.of(ErrorMessage.INVALID_ORDER));
     }
 
     String getName();

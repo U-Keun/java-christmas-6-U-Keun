@@ -1,5 +1,7 @@
 package christmas.util;
 
+import christmas.util.exception.ErrorMessage;
+import christmas.util.exception.EventException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -35,14 +37,14 @@ public abstract class InputMap<A, B> implements InputValidator {
 
     private void checkPair(final List<String> pair) {
         if (pair.size() != 2) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw EventException.of(ErrorMessage.INVALID_ORDER);
         }
     }
 
     private void checkBlank(final List<String> pair) {
         for (String element : pair) {
             if (element.isEmpty()) {
-                throw new IllegalArgumentException("[ERROR]");
+                throw EventException.of(ErrorMessage.INVALID_ORDER);
             }
         }
     }
@@ -51,7 +53,7 @@ public abstract class InputMap<A, B> implements InputValidator {
         Set<String> set = new HashSet<>();
         for (List<String> pair : parsedString) {
             if (!set.add(pair.get(0))) {
-                throw new IllegalArgumentException("[ERROR]");
+                throw EventException.of(ErrorMessage.INVALID_ORDER);
             }
         }
         return parsedString;
