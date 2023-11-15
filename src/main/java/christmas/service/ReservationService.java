@@ -2,6 +2,8 @@ package christmas.service;
 
 import christmas.dto.ReservationDTO;
 import christmas.model.AppliedEvent;
+import christmas.model.EventBadge;
+import christmas.model.Money;
 import christmas.model.Order;
 import java.time.LocalDate;
 
@@ -14,6 +16,7 @@ public class ReservationService {
     private static final String STAR = "별";
     private static final String TREE = "트리";
     private static final String SANTA = "산타";
+    private static final Money CHAMPAGNE_PRICE = Money.valueOf(25000);
     private ReservationService(Integer dayNumber, Order order) {
         this.date = LocalDate.of(THIS_YEAR, THIS_MONTH, dayNumber);
         this.order = order;
@@ -31,9 +34,9 @@ public class ReservationService {
 
         setDataByAppliedEvent(reservationDTO);
 
-        reservationDTO.setTotalPaymentAmount(calculateTotalPaymentAmount(reservationDTO));
+        reservationDTO.setTotalPaymentAmount(calculateTotalPaymentAmount());
 
-        reservationDTO.setEventBadge(getEventBadge(reservationDTO));
+        reservationDTO.setEventBadge(getEventBadge());
         return reservationDTO;
     }
 
@@ -45,28 +48,21 @@ public class ReservationService {
     private void setDataByAppliedEvent(ReservationDTO reservationDTO) {
         reservationDTO.setDiscountDetails(appliedEvent.getDiscountDetails(date, order));
         reservationDTO.setGiveawayMenu(appliedEvent.getGiveawayMenu());
-        reservationDTO.setTotalBenefitAmount(appliedEvent.getTotalBenefitAmount(date, order));
+
+        Money negatedBenefitAmount = appliedEvent.getTotalBenefitAmount(date, order).times(-1);
+        reservationDTO.setTotalBenefitAmount(negatedBenefitAmount.toInt());
     }
 
-    private Integer calculateTotalPaymentAmount(ReservationDTO reservationDTO) {
-        Integer paymentAmount = reservationDTO.getTotalOrderAmount() + reservationDTO.getTotalBenefitAmount();
-        if (reservationDTO.getGiveawayMenu() != null) {
-            paymentAmount += 25000;
+    private Integer calculateTotalPaymentAmount() {
+        Money payment = order.getTotalOrderAmount().minus(appliedEvent.getTotalBenefitAmount(date, order));
+        if (appliedEvent.getGiveawayMenu() != null) {
+            payment = payment.plus(CHAMPAGNE_PRICE);
         }
-        return paymentAmount;
+        return payment.toInt();
     }
 
-    private String getEventBadge(ReservationDTO reservationDTO) {
-        Integer totalBenefitAmount = (-1) * reservationDTO.getTotalBenefitAmount();
-        if (totalBenefitAmount >= 20000) {
-            return SANTA;
-        }
-        if (totalBenefitAmount >= 10000) {
-            return TREE;
-        }
-        if (totalBenefitAmount >= 5000) {
-            return STAR;
-        }
-        return null;
+    private String getEventBadge() {
+        Money totalBenefitAmount = appliedEvent.getTotalBenefitAmount(date, order);
+        return EventBadge.getEventBadge(totalBenefitAmount);
     }
 }

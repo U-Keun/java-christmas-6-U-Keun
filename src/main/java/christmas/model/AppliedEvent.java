@@ -31,14 +31,14 @@ public class AppliedEvent {
     public String getGiveawayMenu() {
         return appliedEvent.stream()
                 .filter(event -> event == CHAMPAGNE_EVENT)
-                .findAny()
+                .findFirst()
                 .map(event -> GIVEAWAY_MENU)
                 .orElse(null);
     }
 
-    public Integer getTotalBenefitAmount(LocalDate date, Order order) {
-        return (-1) * appliedEvent.stream()
-                .mapToInt(event -> event.getDiscountedMoney(date, order).toInt())
-                .sum();
+    public Money getTotalBenefitAmount(LocalDate date, Order order) {
+        return appliedEvent.stream()
+                .map(event -> event.getDiscountedMoney(date, order))
+                .reduce(Money.ZERO, Money::plus);
     }
 }
