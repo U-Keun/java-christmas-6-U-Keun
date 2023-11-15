@@ -42,7 +42,7 @@ public class InputMenuMap extends InputMap<String, Integer> {
     private void checkMenuCount() {
         for (Integer menuCount : map.values()) {
             if (menuCount < 1 || menuCount > 20) {
-                throw new IllegalArgumentException("[ERROR]");
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }

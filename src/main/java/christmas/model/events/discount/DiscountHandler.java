@@ -1,4 +1,4 @@
-package christmas.model.events.util;
+package christmas.model.events.discount;
 
 import christmas.model.Money;
 import christmas.model.Order;

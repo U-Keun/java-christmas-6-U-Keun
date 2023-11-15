@@ -2,11 +2,11 @@ package christmas.model.events;
 
 import christmas.model.Money;
 import christmas.model.Order;
-import christmas.model.events.util.ChampagneDiscount;
-import christmas.model.events.util.ChristmasDDayDiscount;
-import christmas.model.events.util.HolidayDiscount;
-import christmas.model.events.util.SpecialDiscount;
-import christmas.model.events.util.WeekdayDiscount;
+import christmas.model.events.discount.ChampagneDiscount;
+import christmas.model.events.discount.ChristmasDDayDiscount;
+import christmas.model.events.discount.HolidayDiscount;
+import christmas.model.events.discount.SpecialDiscount;
+import christmas.model.events.discount.WeekdayDiscount;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;

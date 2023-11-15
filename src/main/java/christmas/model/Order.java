@@ -47,7 +47,7 @@ public class Order {
 
     private void checkValidQuantity() {
         if (countTotalQuantity() > MAXIMUM_QUANTITY) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
@@ -59,7 +59,7 @@ public class Order {
 
     private void checkValidOrder() {
         if (hasOnlyBeverages()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
