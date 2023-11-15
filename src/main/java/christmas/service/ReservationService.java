@@ -43,27 +43,28 @@ public class ReservationService {
     }
 
     private void setDataByAppliedEvent(ReservationDTO reservationDTO) {
-        reservationDTO.setDiscountDetails(appliedEvent.getDiscountDetails());
-        reservationDTO.setGiveawayMenu(appliedEvent.hasGiveawayMenu());
-        reservationDTO.setTotalBenefitAmount(appliedEvent.getTotalBenefitAmount());
+        reservationDTO.setDiscountDetails(appliedEvent.getDiscountDetails(date, order));
+        reservationDTO.setHasGiveawayMenu(appliedEvent.hasGiveawayMenu());
+        reservationDTO.setTotalBenefitAmount(appliedEvent.getTotalBenefitAmount(date, order));
     }
 
     private Integer calculateTotalPaymentAmount(ReservationDTO reservationDTO) {
-        Integer paymentAmount = reservationDTO.getTotalOrderAmount() - reservationDTO.getTotalBenefitAmount();
-        if (reservationDTO.isGiveawayMenu()) {
+        Integer paymentAmount = reservationDTO.getTotalOrderAmount() + reservationDTO.getTotalBenefitAmount();
+        if (reservationDTO.hasGiveawayMenu()) {
             paymentAmount += 25000;
         }
         return paymentAmount;
     }
 
     private String getEventBadge(ReservationDTO reservationDTO) {
-        if (reservationDTO.getTotalBenefitAmount() >= 20000) {
+        Integer totalBenefitAmount = (-1) * reservationDTO.getTotalBenefitAmount();
+        if (totalBenefitAmount >= 20000) {
             return SANTA;
         }
-        if (reservationDTO.getTotalBenefitAmount() >= 10000) {
+        if (totalBenefitAmount >= 10000) {
             return TREE;
         }
-        if (reservationDTO.getTotalBenefitAmount() >= 5000) {
+        if (totalBenefitAmount >= 5000) {
             return STAR;
         }
         return null;
