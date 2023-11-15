@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public class SpecialDiscount extends DefaultDiscount {
     private static final LocalDate CHRISTMAS = LocalDate.of(2023, 12, 25);
     private static final Money DISCOUNT_AMOUNT = Money.valueOf(1000);
+
     @Override
     protected Money calculateDiscountAmount(LocalDate date, Order order) {
         if (checkDiscountCondition(date, order)) {

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 public class WeekdayDiscount extends DefaultDiscount {
     private static final Money DISCOUNT_UNIT = Money.valueOf(2023);
+
     @Override
     protected Money calculateDiscountAmount(LocalDate date, Order order) {
         if (checkDiscountCondition(date, order)) {

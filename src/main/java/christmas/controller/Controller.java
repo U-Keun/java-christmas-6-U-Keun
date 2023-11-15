@@ -7,5 +7,6 @@ public interface Controller {
     static Controller generateReservationController() {
         return new ReservationController(new InputView(), new OutputView());
     }
+
     void start();
 }

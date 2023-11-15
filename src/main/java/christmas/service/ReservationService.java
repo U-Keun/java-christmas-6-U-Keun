@@ -13,10 +13,8 @@ public class ReservationService {
     private final AppliedEvent appliedEvent;
     private static final Integer THIS_YEAR = 2023;
     private static final Integer THIS_MONTH = 12;
-    private static final String STAR = "별";
-    private static final String TREE = "트리";
-    private static final String SANTA = "산타";
     private static final Money CHAMPAGNE_PRICE = Money.valueOf(25000);
+
     private ReservationService(Integer dayNumber, Order order) {
         this.date = LocalDate.of(THIS_YEAR, THIS_MONTH, dayNumber);
         this.order = order;

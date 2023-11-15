@@ -20,6 +20,7 @@ public class ReservationController implements Controller {
 
     public void start() {
         inputService.greetingMessage();
+
         Integer dayNumber = requestDayNumber();
         Order order = requestMenu();
         ReservationDTO reservationDTO = getReservationInformation(dayNumber, order);
