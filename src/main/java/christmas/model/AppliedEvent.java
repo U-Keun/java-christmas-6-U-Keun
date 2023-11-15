@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class AppliedEvent {
     private final List<DiscountEvent> appliedEvent;
+    private static final String GIVEAWAY_MENU = "샴페인 1개";
 
     private AppliedEvent(LocalDate date, Order order) {
         appliedEvent = DecemberEvent.getAppliedEvents(date, order);
@@ -27,9 +28,12 @@ public class AppliedEvent {
                 ));
     }
 
-    public boolean hasGiveawayMenu() {
+    public String getGiveawayMenu() {
         return appliedEvent.stream()
-                .anyMatch(event -> event == CHAMPAGNE_EVENT);
+                .filter(event -> event == CHAMPAGNE_EVENT)
+                .findAny()
+                .map(event -> GIVEAWAY_MENU)
+                .orElse(null);
     }
 
     public Integer getTotalBenefitAmount(LocalDate date, Order order) {

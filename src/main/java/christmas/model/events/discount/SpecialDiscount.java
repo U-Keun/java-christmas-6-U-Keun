@@ -1,23 +1,23 @@
-package christmas.model.events.util;
+package christmas.model.events.discount;
 
 import christmas.model.Money;
 import christmas.model.Order;
-import christmas.model.food.MainDish;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-public class HolidayDiscount extends DefaultDiscount {
+public class SpecialDiscount extends DefaultDiscount {
+    private static final LocalDate CHRISTMAS = LocalDate.of(2023, 12, 25);
+    private static final Money DISCOUNT_AMOUNT = Money.valueOf(1000);
     @Override
     protected Money calculateDiscountAmount(LocalDate date, Order order) {
         if (checkDiscountCondition(date, order)) {
-            return Money.valueOf(2023).times(order.getCountMenuTypeOf(MainDish.class));
+            return DISCOUNT_AMOUNT;
         }
         return Money.ZERO;
     }
 
     @Override
     public boolean checkDiscountCondition(LocalDate date, Order order) {
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return dayOfWeek.equals(DayOfWeek.FRIDAY) || dayOfWeek.equals(DayOfWeek.SATURDAY);
+        return date.equals(CHRISTMAS) || date.getDayOfWeek().equals(DayOfWeek.SUNDAY);
     }
 }
