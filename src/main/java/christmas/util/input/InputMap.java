@@ -1,4 +1,4 @@
-package christmas.util;
+package christmas.util.input;
 
 import christmas.util.exception.ErrorMessage;
 import christmas.util.exception.EventException;

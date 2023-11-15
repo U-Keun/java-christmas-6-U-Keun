@@ -1,6 +1,6 @@
 package christmas.model.input;
 
-import christmas.util.InputNumber;
+import christmas.util.input.InputNumber;
 import christmas.util.exception.ErrorMessage;
 import christmas.util.exception.EventException;
 

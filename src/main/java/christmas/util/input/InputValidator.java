@@ -1,4 +1,4 @@
-package christmas.util;
+package christmas.util.input;
 
 public interface InputValidator {
     void validateInstance();

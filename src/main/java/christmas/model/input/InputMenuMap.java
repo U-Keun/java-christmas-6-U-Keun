@@ -1,6 +1,6 @@
 package christmas.model.input;
 
-import christmas.util.InputMap;
+import christmas.util.input.InputMap;
 import christmas.util.exception.ErrorMessage;
 import christmas.util.exception.EventException;
 import java.util.List;
