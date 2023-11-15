@@ -20,15 +20,25 @@ public class ReservationController implements Controller {
 
     public void start() {
         inputService.greetingMessage();
-        inputService.requestDayNumberMessage();
-        Integer dayNumber = Retry.retryOnException(inputService::requestInputDayNumber);
-
-        inputService.requestMenuMessage();
-        Order order = Retry.retryOnException(inputService::requestInputMenu);
-
-        ReservationService reservationService = ReservationService.getInstance(dayNumber, order);
-        ReservationDTO reservationDTO = reservationService.getReservationDTO();
+        Integer dayNumber = requestDayNumber();
+        Order order = requestMenu();
+        ReservationDTO reservationDTO = getReservationInformation(dayNumber, order);
 
         outputService.printResult(reservationDTO);
+    }
+
+    private Integer requestDayNumber() {
+        inputService.requestDayNumberMessage();
+        return Retry.retryOnException(inputService::requestInputDayNumber);
+    }
+
+    private Order requestMenu() {
+        inputService.requestMenuMessage();
+        return Retry.retryOnException(inputService::requestInputMenu);
+    }
+
+    private ReservationDTO getReservationInformation(Integer dayNumber, Order order) {
+        ReservationService reservationService = ReservationService.getInstance(dayNumber, order);
+        return reservationService.getReservationDTO();
     }
 }
