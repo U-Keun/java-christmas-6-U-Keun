@@ -1,0 +1,68 @@
+- Model
+  - `Order` 클래스
+    - 음식 메뉴와 수량을 가지는 맵을 가진다.
+    - [x] 올바른 주문인지 확인하는 메서드
+      - 주문한 음식의 개수가 20개 이하인지 확인한다.
+      - 주문은 음료로만 구성될 수 없다.
+    - [x] 총 주문 금액을 반환하는 메서드
+  - `DiscountEvent` 인터페이스
+    - 이벤트 이름과 할인 금액을 볼 수 있는 메서드를 구현해야 한다.
+    - `DecemberEvent` 열거형 클래스
+      - 12월 이벤트를 enum 객체로 가진다. 각 객체는 이벤트 이름과 할인되는 금액을 가진다.
+      - [x] 날짜와 주문이 주어졌을 때 적용되는 이벤트 리스트를 반환하는 메서드
+    - `DiscountHandler` 인터페이스
+      - 이 인터페이스를 구현하는 클래스는 할인 조건을 확인하는 메서드와 할인 금액을 계산하는 메서드를 구현해야 한다.
+      - `DefaultDiscount` 추상 클래스
+        - 할인을 받을 수 있는 기본 금액 이상의 주문이 들어왔는지 확인한다.
+        - [x] `ChristmasDDayDiscount` 클래스 구현
+        - [x] `WeekdayDiscount` 클래스 구현
+        - [x] `HolidayDiscount` 클래스 구현
+        - [x] `SpecialDiscount` 클래스 구현
+        - [x] `ChampagneDiscount` 클래스 구현
+  - `Food` 인터페이스
+    - `Appetizer`, `MainDish`, `Dessert`, `Beverage` 열거형 클래스
+    - 주문할 수 있는 음식 메뉴와 가격을 가진다.
+      - [x] 문자열이 주어졌을 때, 문자열에 대응되는 음식 메뉴 객체를 반환하는 정적 메서드
+        - 대응되는 음식 메뉴가 없다면 `IllegalArgumentException`을 던진다.
+      - [x] 음식 메뉴 객체의 이름을 반환하는 메서드
+      - [x] 매개 변수로 수량을 받아서 음식 메뉴 객체의 수량 만큼의 가격을 반환하는 메서드
+      - [x] 음식이 음료인지 여부를 확인하는 메서드
+  - `Money` 클래스 : 데이터가 금액임을 명시하기 위해 사용하자.
+    - `BigDecimal` 타입의 멤버 변수를 가진다.
+    - [x] 금액의 더하기, 빼기, 곱하기 메서드
+    - [x] 특정 값 이상인지 확인하는 메서드
+  - [x] `InputDayNumber` 클래스
+    - `InputNumber` 클래스를 상속받는다.
+  - [x] `InputMenuMap` 클래스
+    - `InputMap` 클래스를 상속받는다.
+  - `AppliedEvent` 클래스
+    - 적용된 `DiscountEvent`의 리스트를 가진다.
+    - [x] 할인 정보, 증정 이벤트 활성화 여부, 총 혜택 금액을 반환하는 기능
+- View
+  - `InputView` 클래스
+    - [x] 입력을 요청하는 메시지를 출력하는 기능
+  - `OutputView` 클래스
+- Controller
+  - `Controller` 인터페이스
+    - `start` 메서드를 구현해야 한다.
+    - `ReservationController` 클래스
+- service
+  - `InputService` 클래스
+    - [x] 입력할 때 사용자에게 보여줄 출력문을 호출하는 기능
+    - [x] 사용자에게 입력을 요쳥하는 기능
+  - `ReservationService` 클래스
+    - 날짜, 주문 정보, 할인 정보(이벤트 리스트)를 가진다.
+    - [x] 전달할 정보를 dto 객체로 반환하는 메서드
+  - `OutputService` 클래스
+    - 출력 관련 기능을 가지는 클래스
+    - [x경] dto 객체를 통해 데이터를 받아서 결과를 출력하는 기능
+- util
+  - `InputValidator` 인터페이스
+    - [x] `InputNumber` 추상 클래스
+      - 객체의 유효성을 검사하는 메서드를 구현해야 한다.
+    - [x] `InputMap` 추상 클래스
+      - 구분자를 지정하는 메서드, 분해된 문자열을 Map으로 변환하는 메서드, 객체의 유효성을 검사하는 메서드를 구현해야 한다.
+  - `Retry` 클래스
+    - 메서드를 호출했을 때 예외가 발생하는 경우에, 해당 메서드를 다시 호출하는 메서드를 가진다.
+
+---
